@@ -1,47 +1,30 @@
 # **Finding Lane Lines on the Road** 
 
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file. But feel free to use some other method and submit a pdf if you prefer.
-
----
-
+## Writeup For John Shull
 **Finding Lane Lines on the Road**
-
-The goals / steps of this project are the following:
-* Make a pipeline that finds lane lines on the road
-* Reflect on your work in a written report
-
-
-[//]: # (Image References)
-
-[image1]: ./examples/grayscale.jpg "Grayscale"
-
----
 
 ### Reflection
 
 ### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
+I followed similar steps used in the examples prior to the project.
+I established a set of variables that were related to ratios of the image size (this way if the image resolution changed the pipeline would still function correctly)
+These variables were then used in the following manner.
+#1. Gray Scale Image
+#2. Blur the Gray Scale Image
+#3. Edge Detection through the canny edge detecting process
+#4. Mask the edges using some of the variables outlined above.
+#5. Hough transformation
+#6. Generalize a left and right line through a fitted line equation by evaluating slope and position of line relative to screen
+#7. Combine the original image with the results
+See some of the test image results below
+![Image1](/test_images_output/modified-solidWhiteCurve.jpg?raw=true "White Curve")
 
-My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I .... 
+![Image2](/test_images_output/modified-solidWhiteRight.jpg?raw=true "Yellow Curve")
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
-
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
-
-![alt text][image1]
-
-
+![Image3](/test_images_output/modified-solidYellowCurve.jpg?raw=true "Yellow Curve")
 ### 2. Identify potential shortcomings with your current pipeline
 
-
-One potential shortcoming would be what would happen when ... 
-
-Another shortcoming could be ...
-
+This method works okay within the scope of the assignment but internal to my modified line drawing function I have a loops that I could probably optimize more efficiently within one loop. I am also storing items in multiple arrays due to my lack of knowledge regarding python numpy. I also didn't taylor the pipeline to work with the last video file - the last video file has a lot more noise regarding the hood of the vehicle. If this noise were removed the current pipeline would be sufficient for this video, but still not fully correct.
 
 ### 3. Suggest possible improvements to your pipeline
-
-A possible improvement would be to ...
-
-Another potential improvement could be to ...
+A few improvements would be to separate sections of the image to understand if we are turning right or turning left. This could be done by splitting the image into two sections through separate masks. The lower mask would be roughly the same pipeline as mentioned above, but the secondary mask would only look at the upper portion of road and it would apply a higher degree polynomial for a higher fit function seeking curves. Then the reconstruction of the line could visually be done through the use of a bezier curve function with the parameter for curvature being represented by the top mask fitted equation. In addressing the extra challenge video, as mentioned in section 2, if the hood of the vehicle was removed from processing my current pipeline wouldn't deliver such varying lines. Another fix would be to hold the previous frames line in memory and compare the next frames line to this to determine if there is a significant change. 
