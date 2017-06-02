@@ -9,13 +9,13 @@
 I followed similar steps used in the examples prior to the project.
 I established a set of variables that were related to ratios of the image size (this way if the image resolution changed the pipeline would still function correctly)
 These variables were then used in the following manner.
-#1. Gray Scale Image
-#2. Blur the Gray Scale Image
-#3. Edge Detection through the canny edge detecting process
-#4. Mask the edges using some of the variables outlined above.
-#5. Hough transformation
-#6. Generalize a left and right line through a fitted line equation by evaluating slope and position of line relative to screen
-#7. Combine the original image with the results
+1. Gray Scale Image
+2. Blur the Gray Scale Image
+3. Edge Detection through the canny edge detecting process
+4. Mask the edges using some of the variables outlined above.
+5. Hough transformation
+6. Generalize a left and right line through a fitted line equation by evaluating slope and position of line relative to screen
+7. Combine the original image with the results
 See some of the test image results below
 ![Image1](/test_images_output/modified-solidWhiteCurve.jpg?raw=true "White Curve")
 
