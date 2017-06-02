@@ -1,6 +1,6 @@
 # **Finding Lane Lines on the Road** 
 
-## Writeup For John Shull
+## Writeup By John Shull
 **Finding Lane Lines on the Road**
 
 ### Reflection
